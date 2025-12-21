@@ -21,7 +21,18 @@
 /* BASE STYLES
 /*******************************************/
 
+html,
 body {
+  background-color: #333333;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: center;
+  height: 100vh;
+}
+body {
+  border: 1px solid black;
+  background-color: lightcyan;
 }
 
 /******************************************
@@ -37,12 +48,56 @@ footer {
 /* ADDITIONAL STYLES
 /*******************************************/
 
-.playerCard {
+main {
+  min-width: 300px;
+  background-color: greenyellow;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#setupForm {
+  flex-grow: 1;
+  display: grid;
+  grid-template-rows: repeat(8, 1fr);
+  gap: 10px;
+}
+
+.playerCard,
+.playerDiv {
   border: 1px solid black;
+}
+
+#buttonDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+#startButton {
+  grid-column: 1/-1;
+}
+
+#playDiv {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.playerCard {
+  flex-grow: 1;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-rows: 1fr 1fr;
 }
+
+.playerCard > * {
+  margin: auto;
+}
+
 .nameDisplay,
 .scoreDisplay {
   grid-column: 2 / -2;

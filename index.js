@@ -5,6 +5,9 @@ const drawSetupView = () => {
   const setupForm = document.createElement("form");
   setupForm.setAttribute("id", "setupForm");
 
+  const buttonDiv = document.createElement("div");
+  buttonDiv.setAttribute("id", "buttonDiv");
+
   const addPlayerButton = document.createElement("button");
   addPlayerButton.textContent = "Add Player";
 
@@ -22,6 +25,7 @@ const drawSetupView = () => {
   });
 
   const startButton = document.createElement("button");
+  startButton.setAttribute("id", "startButton");
   startButton.textContent = "Start Game";
   startButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -37,16 +41,18 @@ const drawSetupView = () => {
   });
 
   main.appendChild(setupForm);
-  main.appendChild(addPlayerButton);
-  main.appendChild(removePlayerButton);
-  main.appendChild(startButton);
+  main.appendChild(buttonDiv);
+
+  buttonDiv.appendChild(addPlayerButton);
+  buttonDiv.appendChild(removePlayerButton);
+  buttonDiv.appendChild(startButton);
   addPlayerForm();
 };
 
 const drawPlayView = () => {
   const main = document.querySelector("main");
   const playDiv = document.createElement("div");
-
+  playDiv.setAttribute("id", "playDiv");
   const resetButton = document.createElement("button");
   resetButton.textContent = "Reset";
   resetButton.addEventListener("click", (event) => {
@@ -102,7 +108,7 @@ const drawPlayerCard = (player) => {
     score--;
     playerScoreDisplay.textContent = score;
   };
-  
+
   playerCard.appendChild(decreaseScoreButton);
   playerCard.appendChild(nameHeading);
   playerCard.appendChild(playerScoreDisplay);
@@ -115,12 +121,20 @@ const drawPlayerForm = () => {
   const setupForm = document.getElementById("setupForm");
   let playerNumber = setupForm.childElementCount + 1;
   const playerDiv = document.createElement("div");
+  playerDiv.setAttribute("class", "playerDiv");
   const playerLabel = document.createElement("label");
   playerLabel.textContent = `Player ${playerNumber} name: `;
+
+  //TODO
+    const colorLabel = document.createElement("label");
+  colorLabel.textContent = `Player color: `;
 
   const playerInput = document.createElement("input");
   playerDiv.appendChild(playerLabel);
   playerDiv.appendChild(playerInput);
+  playerDiv.appendChild(colorLabel);
+
+
   return playerDiv;
 };
 
@@ -148,7 +162,6 @@ const removePlayerForm = () => {
 
 const checkAllPlayerNames = () => {
   const players = document.querySelectorAll("input");
-  console.log(players);
   let errCount = 0;
   players.forEach((player) => {
     if (player.value == "") {
