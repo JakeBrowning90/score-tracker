@@ -23,6 +23,7 @@
 
 html,
 body {
+  font-family: Arial, Helvetica, sans-serif;
   background-color: #333333;
   display: flex;
   flex-direction: column;
@@ -30,15 +31,21 @@ body {
   align-items: center;
   height: 100vh;
 }
+
 body {
-  border: 1px solid black;
-  background-color: lightcyan;
+  /* border: 1px solid black;
+  background-color: lightcyan; */
 }
 
 /******************************************
 /* LAYOUT
 /*******************************************/
 header {
+  background-color: rgb(3, 3, 154);
+  color: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 footer {
@@ -49,30 +56,49 @@ footer {
 /*******************************************/
 
 main {
-  min-width: 300px;
-  background-color: greenyellow;
+  min-width: 310px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 5px 0;
+  gap: 5px;
 }
 
 #setupForm {
   flex-grow: 1;
   display: grid;
   grid-template-rows: repeat(8, 1fr);
-  gap: 10px;
+  /* padding: 0 5px; */
+
+  gap: 5px;
 }
 
 .playerCard,
 .playerDiv {
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  border-radius: 10px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.playerDiv {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: repeat(2, 1fr);
+  background-color: #fff;
+  font-size: 0.9em;
+}
+
+.playerDiv > * {
+  margin: auto;
 }
 
 #buttonDiv {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  gap: 5px;
 }
 
 #startButton {
@@ -84,7 +110,8 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
+  gap: 5px;
+  margin: 0;
 }
 
 .playerCard {
@@ -95,13 +122,26 @@ main {
 }
 
 .playerCard > * {
-  margin: auto;
+  /* margin: 10px; */
+  /* padding: 5px; */
+}
+
+.nameDisplay,
+.scoreDisplay,
+.cardButton {
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .nameDisplay,
 .scoreDisplay {
   grid-column: 2 / -2;
   text-align: center;
+  background-color: #fff;
+  color: #222;
+  margin: auto;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .nameDisplay {
@@ -114,4 +154,8 @@ main {
 
 .cardButton {
   grid-row: 1 / -1;
+  width: 50%;
+  aspect-ratio: 1 / 1;
+  justify-self: center;
+  align-self: center;
 }

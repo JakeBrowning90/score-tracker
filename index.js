@@ -50,19 +50,20 @@ const drawSetupView = () => {
 };
 
 const drawPlayView = () => {
+  // const main = document.querySelector("main");
   const main = document.querySelector("main");
   const playDiv = document.createElement("div");
   playDiv.setAttribute("id", "playDiv");
-  const resetButton = document.createElement("button");
-  resetButton.textContent = "Reset";
-  resetButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    clearView();
-    clearPlayerList();
-    drawSetupView();
-  });
+  // const resetButton = document.createElement("button");
+  // resetButton.textContent = "Reset";
+  // resetButton.addEventListener("click", (event) => {
+  //   event.preventDefault();
+  //   clearView();
+  //   clearPlayerList();
+  //   drawSetupView();
+  // });
 
-  main.appendChild(resetButton);
+  // main.appendChild(resetButton);
   main.appendChild(playDiv);
 
   playerList.forEach((player) => {
@@ -73,6 +74,8 @@ const drawPlayView = () => {
 const drawPlayerCard = (player) => {
   let playerCard = document.createElement("section");
   playerCard.setAttribute("class", "playerCard");
+  playerCard.setAttribute("style", `background-color: ${player.color}`);
+
   let score = 0;
 
   let nameHeading = document.createElement("h2");
@@ -124,16 +127,21 @@ const drawPlayerForm = () => {
   playerDiv.setAttribute("class", "playerDiv");
   const playerLabel = document.createElement("label");
   playerLabel.textContent = `Player ${playerNumber} name: `;
+  const playerInput = document.createElement("input");
+  playerInput.setAttribute("class", "playerInput");
 
   //TODO
-    const colorLabel = document.createElement("label");
+  const colorLabel = document.createElement("label");
   colorLabel.textContent = `Player color: `;
 
-  const playerInput = document.createElement("input");
+  const colorInput = document.createElement("input");
+  colorInput.setAttribute("type", "color");
+  colorInput.setAttribute("class", "colorInput");
+
   playerDiv.appendChild(playerLabel);
   playerDiv.appendChild(playerInput);
   playerDiv.appendChild(colorLabel);
-
+  playerDiv.appendChild(colorInput);
 
   return playerDiv;
 };
@@ -161,7 +169,7 @@ const removePlayerForm = () => {
 };
 
 const checkAllPlayerNames = () => {
-  const players = document.querySelectorAll("input");
+  const players = document.querySelectorAll("input.playerInput");
   let errCount = 0;
   players.forEach((player) => {
     if (player.value == "") {
@@ -176,10 +184,10 @@ const checkAllPlayerNames = () => {
 };
 
 const populatePlayerList = () => {
-  const players = document.querySelectorAll("input");
-  // TO-DO: include color selection
-  players.forEach((player) => {
-    playerList.push({ name: player.value });
+  const players = document.querySelectorAll("input.playerInput");
+  const colors = document.querySelectorAll("input.colorInput");
+  players.forEach((player, index) => {
+    playerList.push({ name: player.value, color: colors[index].value });
   });
 };
 
@@ -187,5 +195,19 @@ const clearPlayerList = () => {
   playerList = [];
 };
 
+const resetButton = () => {
+  const resetButton = document.getElementById("resetButton");
+  // resetButton.textContent = "Reset";
+  resetButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    clearView();
+    clearPlayerList();
+    drawSetupView();
+  });
+
+  return resetButton;
+};
+
 let playerList = [];
+resetButton();
 drawSetupView();
