@@ -43,6 +43,7 @@ header {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 footer {
@@ -52,6 +53,10 @@ footer {
 /* ADDITIONAL STYLES
 /*******************************************/
 
+a,
+a:visited {
+  color: #fff;
+}
 main {
   min-width: 310px;
   flex-grow: 1;
