@@ -1,5 +1,3 @@
-// import { drawSetupView } from "./js/drawSetupView";
-
 const drawSetupView = () => {
   const main = document.querySelector("main");
   const setupForm = document.createElement("form");
@@ -50,20 +48,10 @@ const drawSetupView = () => {
 };
 
 const drawPlayView = () => {
-  // const main = document.querySelector("main");
   const main = document.querySelector("main");
   const playDiv = document.createElement("div");
   playDiv.setAttribute("id", "playDiv");
-  // const resetButton = document.createElement("button");
-  // resetButton.textContent = "Reset";
-  // resetButton.addEventListener("click", (event) => {
-  //   event.preventDefault();
-  //   clearView();
-  //   clearPlayerList();
-  //   drawSetupView();
-  // });
 
-  // main.appendChild(resetButton);
   main.appendChild(playDiv);
 
   playerList.forEach((player) => {
@@ -130,7 +118,6 @@ const drawPlayerForm = () => {
   const playerInput = document.createElement("input");
   playerInput.setAttribute("class", "playerInput");
 
-  //TODO
   const colorLabel = document.createElement("label");
   colorLabel.textContent = `Player color: `;
 
@@ -195,19 +182,16 @@ const clearPlayerList = () => {
   playerList = [];
 };
 
-const resetButton = () => {
+const resetButtonBehavior = () => {
   const resetButton = document.getElementById("resetButton");
-  // resetButton.textContent = "Reset";
   resetButton.addEventListener("click", (event) => {
     event.preventDefault();
     clearView();
     clearPlayerList();
     drawSetupView();
   });
-
-  return resetButton;
 };
 
 let playerList = [];
-resetButton();
+resetButtonBehavior();
 drawSetupView();
