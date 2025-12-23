@@ -2,13 +2,11 @@ const drawSetupView = () => {
   const main = document.querySelector("main");
   const setupForm = document.createElement("form");
   setupForm.setAttribute("id", "setupForm");
-
   const buttonDiv = document.createElement("div");
   buttonDiv.setAttribute("id", "buttonDiv");
 
   const addPlayerButton = document.createElement("button");
   addPlayerButton.textContent = "Add Player";
-
   addPlayerButton.addEventListener("click", (event) => {
     event.preventDefault();
     addPlayerForm();
@@ -16,7 +14,6 @@ const drawSetupView = () => {
 
   const removePlayerButton = document.createElement("button");
   removePlayerButton.textContent = "Remove Player";
-
   removePlayerButton.addEventListener("click", (event) => {
     event.preventDefault();
     removePlayerForm();
@@ -51,7 +48,6 @@ const drawPlayView = () => {
   const main = document.querySelector("main");
   const playDiv = document.createElement("div");
   playDiv.setAttribute("id", "playDiv");
-
   main.appendChild(playDiv);
 
   playerList.forEach((player) => {
@@ -117,6 +113,7 @@ const drawPlayerForm = () => {
   playerLabel.textContent = `Player ${playerNumber} name: `;
   const playerInput = document.createElement("input");
   playerInput.setAttribute("class", "playerInput");
+  playerInput.setAttribute("maxlength", "10");
 
   const colorLabel = document.createElement("label");
   colorLabel.textContent = `Player color: `;
@@ -133,13 +130,6 @@ const drawPlayerForm = () => {
   return playerDiv;
 };
 
-const clearView = () => {
-  const main = document.querySelector("main");
-  while (main.firstChild) {
-    main.removeChild(main.lastChild);
-  }
-};
-
 const addPlayerForm = () => {
   const setupForm = document.getElementById("setupForm");
   // Cap at 8
@@ -150,6 +140,7 @@ const addPlayerForm = () => {
 
 const removePlayerForm = () => {
   const setupForm = document.getElementById("setupForm");
+  // Floor is 1
   if (setupForm.childElementCount > 1) {
     setupForm.lastElementChild.remove();
   }
@@ -176,6 +167,13 @@ const populatePlayerList = () => {
   players.forEach((player, index) => {
     playerList.push({ name: player.value, color: colors[index].value });
   });
+};
+
+const clearView = () => {
+  const main = document.querySelector("main");
+  while (main.firstChild) {
+    main.removeChild(main.lastChild);
+  }
 };
 
 const clearPlayerList = () => {
