@@ -80,11 +80,15 @@ const drawPlayerCard = (player) => {
 
   increaseScoreButton.addEventListener("click", (event) => {
     event.preventDefault();
-    increaseScore();
+    if (score < 999) {
+      increaseScore();
+    }
   });
   decreaseScoreButton.addEventListener("click", (event) => {
     event.preventDefault();
-    decreaseScore();
+    if (score > -999) {
+      decreaseScore();
+    }
   });
 
   const increaseScore = () => {
