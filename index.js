@@ -2,10 +2,16 @@ const drawSetupView = () => {
   const main = document.querySelector("main");
   const setupForm = document.createElement("form");
   setupForm.setAttribute("id", "setupForm");
+
   const buttonDiv = document.createElement("div");
   buttonDiv.setAttribute("id", "buttonDiv");
 
+  const instructionSpan = document.createElement("span");
+  instructionSpan.setAttribute("id", "instructionSpan");
+  instructionSpan.textContent = "Choose player count and names";
+
   const addPlayerButton = document.createElement("button");
+  addPlayerButton.setAttribute("id", "addPlayerButton");
   addPlayerButton.textContent = "Add Player";
   addPlayerButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -13,6 +19,7 @@ const drawSetupView = () => {
   });
 
   const removePlayerButton = document.createElement("button");
+  removePlayerButton.setAttribute("id", "removePlayerButton");
   removePlayerButton.textContent = "Remove Player";
   removePlayerButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -24,20 +31,22 @@ const drawSetupView = () => {
   startButton.textContent = "Start Game";
   startButton.addEventListener("click", (event) => {
     event.preventDefault();
-    // TO-DO: Set list of players for drawing Play View
     if (checkAllPlayerNames()) {
+      // Render Play view
       populatePlayerList();
       clearView();
       drawPlayView();
+    } else {
+      // Display error message
+      instructionSpan.textContent = "Enter all names or remove non-players";
+      instructionSpan.setAttribute("class", "errorMessage");
     }
-    // else {
-    //     display error message about missing name
-    // }
   });
 
   main.appendChild(setupForm);
   main.appendChild(buttonDiv);
 
+  buttonDiv.appendChild(instructionSpan);
   buttonDiv.appendChild(addPlayerButton);
   buttonDiv.appendChild(removePlayerButton);
   buttonDiv.appendChild(startButton);

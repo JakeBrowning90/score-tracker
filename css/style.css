@@ -32,7 +32,6 @@ body {
 }
 
 body {
-  
 }
 
 /******************************************
@@ -92,12 +91,29 @@ main {
 #buttonDiv {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
   gap: 5px;
+}
+#instructionSpan {
+  grid-column: 1/-1;
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  padding: 3px;
+}
+
+.errorMessage {
+  color: red;
+}
+
+#addPlayerButton,
+#removePlayerButton {
+  grid-row: 2/2;
 }
 
 #startButton {
   grid-column: 1/-1;
+  grid-row: -2/-1;
 }
 
 #playDiv {
